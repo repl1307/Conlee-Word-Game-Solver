@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Conlee Word Game Solver</title>
+</head>
+<body>
+  <div id="main-container">
+    <h1> Mr. Conlee's Word Game Solver </h1>
+    <h4>Rules</h4>
+    <ul>
+      <li>Come up with the longest word you can given certain letters</li>
+      <li>The first letter has to be part of the solution</li> 
+      <li>Letters can be used as many times as you want</li>
+      <li>You don't have to use every provided letter in your solution</li>
+    </ul>
+    
+    <h4>Solver</h4>  
+    <p>Enter the letters starting with the mandatory one.</p>
+    <p>It doesn't matter if they are separated by spaces or commas, or even nothing at all.</p>
+    <input type="text" col="12" />
+    <br/>
+    <label for="toggle-mandatory"> Require Mandatory Letter? </label>
+    <input type="checkbox" name = "toggle-mandatory" id = "toggle-mandatory" checked=true />
+    <br>
+    <button id="submit">Submit</button>
+    <p id="input"></p>
+    <p id="result"></p>
+    <div class="loading-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
