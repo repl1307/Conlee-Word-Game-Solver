@@ -4,6 +4,7 @@ const result = document.getElementById('result');
 const submit = document.getElementById('submit');
 const loadingContainer = document.querySelector('.loading-container');
 const progressBar = document.querySelector('.progress-bar');
+const select = document.querySelector('select');
 
 //webworker
 const worker = new Worker('webworker.js');
@@ -11,6 +12,9 @@ worker.onmessage = (e) => {
   progressBar.style.width = e.data;
 };
 //event listeners
+select.addEventListener('change', e => {
+   console.log(select.value);
+});
 input.addEventListener('keydown', e => {
   if(e.key == 'Enter'){
      handleInput();
@@ -29,7 +33,7 @@ async function getLongestWord(letters, requireMandatoryLetter=false){
   loadingContainer.style.display = 'block';
   progressBar.style.width = '0px';
   loadingContainer.scrollIntoView(false);
-  let longestWord = [''];
+  let longestWord = [];
   //check if provided word matches letter criteria
   const matchesLetters = (word) => {
     let hasMandatoryLetter = false;
@@ -65,17 +69,29 @@ async function getLongestWord(letters, requireMandatoryLetter=false){
       worker.postMessage({count, percentage})
     }
     if(matchesLetters(word)){
-      if(word.length > longestWord[0].length){
-        longestWord = [];
+      longestWord.push(word);
+    /*  if(word.length >= longestWord[0].length || true){
+        if (longestWord.length > select.value && false) {
+           longestWord = [];
+        }
         longestWord.push(word);
       }
       else if(word.length == longestWord[0].length){
         longestWord.push(word);
-      }
+      } */
     }
     count++;
   }
-  result.innerHTML = 'Longest Words:<br>';
+  progressBar.style.width = '100%';
+  longestWord.sort((a, b) => { return b.length - a.length});
+  longestWord = longestWord.slice(0, select.value);
+
+  result.innerHTML = "";
+  if (select.value > longestWord.length) {
+     result.innerHTML += 'Only '+longestWord.length+' words were found that matched the inputted criteria<br/><br/>';
+  }
+  
+  result.innerHTML += 'Longest Words:<br>';
   for(const word of longestWord){
     result.innerHTML += word+' Length: '+word.length+'<br>';
   }
@@ -88,6 +104,7 @@ function toggleInputs(bool){
   toggleMandatory.disabled = !bool;
   input.disabled = !bool;
   submit.disabled = !bool;
+  select.disabled = !bool;
 }
 
 //handle user provided input before providing to algorithm
@@ -99,6 +116,7 @@ function handleInput(){
   let str = '';
   for(const char of userInput){ str += char+' ';}
   document.getElementById('input').innerHTML = "Input: "+str;
+  loadingContainer.style.display = 'none';
   result.innerHTML = 'Requesting data...';
   result.scrollIntoView(false);
   toggleInputs(false);
