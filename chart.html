@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Conlee Word Game Chart</title>
+</head>
+<body>
+  <div id="main-container">
+    <button onclick="location.href = '/'">Go Back To Solver</button>
+    <h1> Mr. Conlee's Word Game Chart </h1>
+    <table
+      <colgroup>
+        <col span=2>
+        <col span=5 style="background-color: rgba(90, 90, 125, 0.25)">
+        <col span=5 style="background-color: rgba(120, 150, 205, 0.5)">
+      </colgroup>
+      <tr> 
+        <th rowspan=2>Word Length</th>
+        <th rowspan=2>Base Points</th>
+        <th colspan=5>Without Panagram</th>
+        <th colspan=5>With Panagram</th>
+      </tr>
+      <tr>
+        <td>+1</td>
+        <td>+2</td>
+        <td>+3</td>
+        <td>+4</td>
+        <td>+5</td>
+        <td>+1</td>
+        <td>+2</td>
+        <td>+3</td>
+        <td>+4</td>
+        <td>+5</td>
+      </tr>
+    </table>
+  <script src="scripts/blossomScoreChart.js"></script>
+  <script src="scripts/createChart.js"></script>
+</body>
+</html>
