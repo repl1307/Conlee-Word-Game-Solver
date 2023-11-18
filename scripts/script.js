@@ -41,8 +41,6 @@ submit.addEventListener('click', e => {
 
 //word finding algorithm
 async function getLongestWord(letters, bonusLetter, requireMandatoryLetter=false){
-  //const data = await fetch('/worddata', { method: 'POST' })
-  //const json = await data.json();
   const json = wordData.split('\n');
   await new Promise(res => setTimeout(res, 0));
   result.innerHTML = '<p style="text-align: left;">Loading...<p>';
