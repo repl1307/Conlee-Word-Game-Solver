@@ -127,7 +127,6 @@ async function getLongestWord(letters, bonusLetter, requireMandatoryLetter=false
   if (select.value > longestWord.length) {
      result.innerHTML += 'Only '+longestWord.length+' words were found that matched the inputted criteria<br/><br/>';
   }
-  
   result.innerHTML += `
   <tr>
     <th>Word</th>
@@ -147,6 +146,7 @@ async function getLongestWord(letters, bonusLetter, requireMandatoryLetter=false
   }
   toggleInputs(true);
   loadingContainer.scrollIntoView(false);
+  loadingContainer.style.display = 'none';
 }
 
 //enable/disable input
